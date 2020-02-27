@@ -74,4 +74,5 @@
     </div>
 </section>
 
+{{$news->title}}
 @endsection
