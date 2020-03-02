@@ -11,10 +11,25 @@
 |
 */
 
-Route::get('/', function () {
-    return view('front/index');
+Route::get('/', 'FrontController@index');
+
+Route::get('/news', 'FrontController@news');
+
+Auth::routes();
+
+Route::group(['middleware' => ['auth'],'prefix' => 'home' ], function () {
+
+    //首頁
+    Route::get('/', 'HomeController@index');
+
+
+    //最新消息管理
+    Route::get('news', 'NewsController@index');
+    Route::post('news/store', 'NewsController@store');
+    Route::post('news/update', 'NewsController@edit');
+    Route::post('news/delete', 'NewsController@delete');
 });
 
-Route::get('/news', function () {
-    return view('front/news');
-});
+//尚未講完,待補充
+
+

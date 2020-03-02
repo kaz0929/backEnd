@@ -1,4 +1,4 @@
-@extends('layout/nav')
+@extends('layouts/nav')
 
 
 @section('content')
@@ -74,5 +74,4 @@
     </div>
 </section>
 
-{{$news->title}}
 @endsection
