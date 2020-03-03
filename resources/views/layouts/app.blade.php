@@ -9,15 +9,14 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    @yield('css')
 </head>
 <body>
     <div id="app">
@@ -35,7 +34,7 @@
                     <ul class="navbar-nav mr-auto">
 
                         <li class="nav-item">
-                            <a class="nav-link" href="news">最新消息</a>
+                            <a class="nav-link" href="/home/news">最新消息</a>
                         </li>
 
                         <li class="nav-item dropdown">
@@ -92,5 +91,10 @@
             @yield('content')
         </main>
     </div>
+
+
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}"></script>
+    @yield('js')
 </body>
 </html>

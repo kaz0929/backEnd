@@ -25,9 +25,15 @@ Route::group(['middleware' => ['auth'],'prefix' => 'home' ], function () {
 
     //最新消息管理
     Route::get('news', 'NewsController@index');
+
+    Route::get('news/create', 'NewsController@create');
     Route::post('news/store', 'NewsController@store');
-    Route::post('news/update', 'NewsController@edit');
-    Route::post('news/delete', 'NewsController@delete');
+
+    Route::get('news/edit/{id}', 'NewsController@edit');
+    Route::post('news/update/{id}', 'NewsController@update');
+
+    Route::post('news/delete/{id}', 'NewsController@delete');
+
 });
 
 //尚未講完,待補充
