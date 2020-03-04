@@ -9,6 +9,6 @@ class News extends Model
     protected $table = 'news';
 
     protected $fillable = [
-       'img','title', 'content'
+       'img','title', 'content' ,'sort'
     ];
 }

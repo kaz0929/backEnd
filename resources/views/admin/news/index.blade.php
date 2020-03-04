@@ -1,7 +1,7 @@
 @extends('layouts/app')
 
 @section('css')
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css">
 @endsection
 
 @section('content')
@@ -13,40 +13,46 @@
             <tr>
                 <th>img</th>
                 <th>title</th>
+                <th>sort</th>
                 <th>content</th>
                 <th width="80"></th>
             </tr>
         </thead>
-       <tbody>
+        <tbody>
             @foreach ($all_news as $item)
-                <tr>
-                    <td>
-                        <img src="{{$item->img}}" alt="">
-                    </td>
-                    <td>{{$item->title}}</td>
-                    <td>{{$item->content}}</td>
-                    <td>
-                        <a href="/home/news/edit/{{$item->id}}" class="btn btn-success btn-sm">修改</a>
-                        <button class="btn btn-danger btn-sm" onclick="show_confirm({{$item->id}})">刪除</button>
-                        <form id="delete-form-{{$item->id}}" action="/home/news/delete/{{$item->id}}" method="POST" style="display: none;">
-                            @csrf
-                        </form>
-                    </td>
-                </tr>
+            <tr>
+                <td>
+                    <img width="120" src="{{$item->img}}" alt="">
+                </td>
+                <td>{{$item->title}}</td>
+                <td>{{$item->sort}}</td>
+                <td>{{$item->content}}</td>
+                <td>
+                    <a href="/home/news/edit/{{$item->id}}" class="btn btn-success btn-sm">修改</a>
+                    {{-- <a href="/home/news/delete/{{$item->id}}"class="btn btn-danger btn-sm">刪除</a> --}}
+                    <button class="btn btn-danger btn-sm" onclick="show_confirm({{$item->id}})">刪除</button>
+
+                    <form id="delete-form-{{$item->id}}" action="/home/news/delete/{{$item->id}}" method="POST"
+                        style="display: none;">
+                        @csrf
+                    </form>
+                </td>
+            </tr>
             @endforeach
-       </tbody>
+        </tbody>
     </table>
 </div>
 @endsection
 
 @section('js')
-    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('#example').DataTable();
-
-        } );
+<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#example').DataTable({
+            "order": [[ 2, 'desc' ]]
+        });
+    });
 
         function show_confirm(id)
         {
@@ -54,8 +60,9 @@
             if (r==true)
             {
                 //使用者確認刪除
+                // document.getElementById('delete-form-'+id).submit();
                 document.getElementById(`delete-form-${id}`).submit();
             }
         }
-    </script>
+</script>
 @endsection
