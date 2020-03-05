@@ -13,7 +13,8 @@
 
 Route::get('/', 'FrontController@index');
 
-Route::get('/news', 'FrontController@news');
+Route::get('/news', 'FrontController@news'); //List Page
+Route::get('/news/{id}', 'FrontController@news_detail'); //Content Page
 
 Auth::routes();
 
@@ -21,7 +22,6 @@ Route::group(['middleware' => ['auth'],'prefix' => 'home' ], function () {
 
     //首頁
     Route::get('/', 'HomeController@index');
-
 
     //最新消息管理
     Route::get('news', 'NewsController@index');
@@ -33,6 +33,8 @@ Route::group(['middleware' => ['auth'],'prefix' => 'home' ], function () {
     Route::post('news/update/{id}', 'NewsController@update');
 
     Route::post('news/delete/{id}', 'NewsController@delete');
+
+    Route::post('ajax_delete_news_imgs', 'NewsController@ajax_delete_news_imgs');
 
 });
 

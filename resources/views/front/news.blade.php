@@ -24,7 +24,7 @@
                         </p>
                     </div>
                     <div class="mbr-section-btn text-center">
-                        <a href="https://mobirise.co" class="btn btn-primary display-4">
+                        <a href="/news/{{$item->id}}" class="btn btn-primary display-4">
                             Learn More
                         </a>
                     </div>
