@@ -15,6 +15,6 @@ class News extends Model
 
     public function news_imgs()
     {
-        return $this->hasMany('App\NewsImgs');
+        return $this->hasMany('App\NewsImgs')->orderby('sort','desc');
     }
 }

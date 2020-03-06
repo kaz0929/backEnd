@@ -35,9 +35,8 @@ Route::group(['middleware' => ['auth'],'prefix' => 'home' ], function () {
     Route::post('news/delete/{id}', 'NewsController@delete');
 
     Route::post('ajax_delete_news_imgs', 'NewsController@ajax_delete_news_imgs');
+    Route::post('ajax_post_sort', 'NewsController@ajax_post_sort');
 
 });
-
-//尚未講完,待補充
 
 

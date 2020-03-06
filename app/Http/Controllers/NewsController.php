@@ -23,7 +23,6 @@ class NewsController extends Controller
     public function store(Request $request)
     {
         $news_data = $request->all();
-        dd($news_data);
 
         //上傳主要圖片
         if($request->hasFile('img')) {
@@ -87,6 +86,23 @@ class NewsController extends Controller
             $request_data['img'] = $path;
         }
 
+        //update 多張圖片
+        if($request->hasFile('news_imgs'))
+        {
+            $files = $request->file('news_imgs');
+            foreach ($files as $file) {
+                //上傳圖片
+                $path = $this->fileUpload($file,'news');
+
+                //建立News多張圖片的資料
+                $news_imgs = new NewsImgs;
+
+                $news_imgs->news_id = $item->id; //找到使用這些圖片的新聞ID
+                $news_imgs->img = $path;
+                $news_imgs->save();
+            }
+        }
+
         $item->update($request_data);
 
         return redirect('/home/news');
@@ -102,6 +118,19 @@ class NewsController extends Controller
         }
 
         $item->delete();
+
+        //多圖片刪除
+
+        $news_imgs = NewsImgs::where('news_id', $id)->get();
+
+        foreach($news_imgs as $news_img ){
+            $old_image = $news_img->img;
+            if(file_exists(public_path().$old_image)){
+                File::delete(public_path().$old_image);
+            }
+
+            $news_img->delete();
+        }
 
         return redirect('/home/news');
     }
@@ -140,6 +169,23 @@ class NewsController extends Controller
         $item->delete();
 
 
-        return "delete success";
+        return "";
     }
+
+    public function ajax_post_sort(Request $request)
+    {
+        $news_img_id = $request->news_id;
+
+        $sort = $request->sort_value;
+
+        $img = NewsImgs::find($news_img_id);
+
+        $img->sort = $sort;
+
+        $img->save();
+
+        return "yeah";
+
+    }
+
 }

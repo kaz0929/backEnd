@@ -1,5 +1,10 @@
 @extends('layouts/app')
 
+
+@section('css')
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote.min.css" rel="stylesheet">
+@endsection
+
 @section('content')
 
 <div class="container">
@@ -23,10 +28,21 @@
     </div>
     <div class="form-group">
       <label for="content">Content</label>
-      <input type="text" class="form-control" id="content" name="content" required>
+      <textarea type="text" class="form-control" id="content" name="content" required></textarea>
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
 </div>
 
+@endsection
+
+
+@section('js')
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        $('#content').summernote();
+    });
+</script>
 @endsection

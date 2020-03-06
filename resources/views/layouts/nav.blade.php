@@ -183,6 +183,7 @@
   <script src="assets/gallery/script.js"></script>
   <script src="assets/slidervideo/script.js"></script>
 
+  @yield('js')
 
 </body>
 </html>
