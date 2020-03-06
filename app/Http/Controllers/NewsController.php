@@ -169,7 +169,7 @@ class NewsController extends Controller
         $item->delete();
 
 
-        return "";
+        return "喵喵喵!!!!";
     }
 
     public function ajax_post_sort(Request $request)
