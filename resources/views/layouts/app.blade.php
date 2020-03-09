@@ -39,12 +39,15 @@
 
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                安安 <span class="caret"></span>
+                                產品管理 <span class="caret"></span>
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="">
-                                    我是下拉選單
+                                <a class="dropdown-item" href="/home/productType">
+                                    產品類型管理
+                                </a>
+                                <a class="dropdown-item" href="/home/products">
+                                    產品管理
                                 </a>
                             </div>
                         </li>

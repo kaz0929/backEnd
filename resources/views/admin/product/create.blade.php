@@ -8,8 +8,8 @@
 @section('content')
 
 <div class="container">
-    <h1>新增最新消息</h1>
-    <form method="POST" action="/home/news/store" enctype="multipart/form-data">
+    <h1>新增產品</h1>
+    <form method="POST" action="/home/products/store" enctype="multipart/form-data">
     @csrf
 
     <div class="form-group">
@@ -17,10 +17,21 @@
         <input type="file" class="form-control" id="img" name="img" required>
     </div>
 
-    <div class="form-group">
+    {{-- <div class="form-group">
         <label for="news_imgs">多張圖片上傳</label>
         <input type="file" class="form-control" id="news_imgs" name="news_imgs[]" required multiple>
-    </div>
+    </div> --}}
+
+    <div class="form-group">
+        <label for="exampleFormControlSelect1">Example select</label>
+        <select class="form-control" id="exampleFormControlSelect1" name="types_id">
+            @foreach ($productTypes as $item)
+            <option value="{{$item->id}}">
+                {{$item->types}}
+            </option>
+            @endforeach
+        </select>
+      </div>
 
     <div class="form-group">
       <label for="title">Title</label>
