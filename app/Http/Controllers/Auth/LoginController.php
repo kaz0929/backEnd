@@ -42,17 +42,14 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
-        $validator = Validator::make($request->all(),[
+
+        $request->validate([
             $this->username() => 'required|string',
             'password' => 'required|string',
             'g-recaptcha-response' => 'recaptcha',
             // OR since v4.0.0
             recaptchaFieldName() => recaptchaRuleName()
         ]);
-
-        if($validator->fails()) {
-            return redirect('/login')->withErrors($validator)->withInput();
-        }
 
         // If the class is using the ThrottlesLogins trait, we can automatically throttle
         // the login attempts for this application. We'll key this by the username and
@@ -75,4 +72,5 @@ class LoginController extends Controller
 
         return $this->sendFailedLoginResponse($request);
     }
+
 }
