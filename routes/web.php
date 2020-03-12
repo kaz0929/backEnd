@@ -17,7 +17,13 @@ Route::get('/news', 'FrontController@news'); //List Page
 Route::get('/news/{id}', 'FrontController@news_detail'); //Content Page
 
 Route::get('/products', 'FrontController@products'); //List Page
-Route::get('/products/{id}', 'FrontController@products_detail'); //Content Page
+Route::get('/products/{product_id}', 'FrontController@products_detail'); //Content Page
+
+Route::get('/test_product_detial','FrontController@test_product_detial'); //cart 結帳頁
+
+Route::post('/add_cart/{product_id}','FrontController@add_cart'); //cart 加入購物車
+Route::get('/cart','FrontController@cart_total'); //cart 總覽
+
 
 Auth::routes();
 

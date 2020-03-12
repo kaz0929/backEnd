@@ -41,7 +41,7 @@
 
 @section('js')
 <script>
-    
+
     $('.card-box *').attr('style','');
 
 </script>
