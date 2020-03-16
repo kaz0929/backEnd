@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use Cart;
 use App\News;
 use App\Products;
+use App\ContactUs;
 use App\ProductTypes;
-use Cart;
+use App\Mail\SendToUser;
+use App\Mail\OrderShipped;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class FrontController extends Controller
 {
@@ -63,5 +67,19 @@ class FrontController extends Controller
         $items = \Cart::session($userID)->getContent();
 
         return view('front.cart', compact('items'));
+    }
+
+    public function contactUs() {
+        return view('front/contactUs');
+    }
+
+    public function contactUs_store(Request $request)
+    {
+        $user_data = $request->all();
+        $content = ContactUs::create($user_data);
+
+        Mail::to('teacherTest0929@gmail.com')->send(new OrderShipped($content)); // 寄信
+
+        return redirect('/contactUs');
     }
 }

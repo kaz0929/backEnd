@@ -24,6 +24,9 @@ Route::get('/test_product_detial','FrontController@test_product_detial'); //cart
 Route::post('/add_cart/{product_id}','FrontController@add_cart'); //cart 加入購物車
 Route::get('/cart','FrontController@cart_total'); //cart 總覽
 
+Route::get('/contactUs', 'FrontController@contactUs'); //聯絡我們
+Route::post('/contactUs/store','FrontController@contactUs_store'); //儲存使用者資料
+
 
 Auth::routes();
 

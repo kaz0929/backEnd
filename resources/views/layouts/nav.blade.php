@@ -56,6 +56,11 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav nav-dropdown" data-app-modern-menu="true">
                 <li class="nav-item">
+                    <a class="nav-link link text-white display-4" href="/contactUs">
+                        聯絡我們
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link link text-white display-4" href="/news">
                         <span class="mbri-search mbr-iconfont mbr-iconfont-btn"></span>
                         最新消息
