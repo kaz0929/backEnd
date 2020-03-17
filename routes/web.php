@@ -19,14 +19,22 @@ Route::get('/news/{id}', 'FrontController@news_detail'); //Content Page
 Route::get('/products', 'FrontController@products'); //List Page
 Route::get('/products/{product_id}', 'FrontController@products_detail'); //Content Page
 
-Route::get('/test_product_detial','FrontController@test_product_detial'); //cart 結帳頁
-
-Route::post('/add_cart/{product_id}','FrontController@add_cart'); //cart 加入購物車
-Route::get('/cart','FrontController@cart_total'); //cart 總覽
-
 Route::get('/contactUs', 'FrontController@contactUs'); //聯絡我們
 Route::post('/contactUs/store','FrontController@contactUs_store'); //儲存使用者資料
 
+Route::post('/add_cart/{product_id}','FrontController@add_cart'); //cart 加入購物車
+Route::post('/update_cart/{product_id}','FrontController@update_cart'); //cart 更新購物車數量
+Route::post('/delete_cart/{product_id}','FrontController@delete_cart'); //cart 刪除商品於購物車中
+Route::get('/cart','FrontController@cart_total'); //cart 總覽
+
+Route::get('/cart_checkout','FrontController@cart_checkout'); //cart 結帳
+Route::post('/cart_checkout','FrontController@post_cart_checkout'); //cart 結帳
+
+Route::get('/test_py',function(){
+    $jsondata= shell_exec("python test.py");
+    $data =  json_decode ($jsondata);
+    dd($data->price);
+});
 
 Auth::routes();
 

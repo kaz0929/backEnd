@@ -1925,6 +1925,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['myProduct'],
+  data: function data() {
+    return {
+      products: this.myProduct
+    };
+  },
   mounted: function mounted() {
     console.log('Component mounted.');
   }

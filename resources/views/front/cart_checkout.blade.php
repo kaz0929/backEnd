@@ -122,7 +122,6 @@
                 <div class="Cart__headerGrid">單價</div>
                 <div class="Cart__headerGrid">數量</div>
                 <div class="Cart__headerGrid">小計</div>
-                <div class="Cart__headerGrid">刪除</div>
             </div>
             @foreach ($items as $item)
                 <div class="Cart__product">
@@ -132,17 +131,46 @@
                     </div>
                     <div class="Cart__productGrid Cart__productPrice">${{$item->price}}</div>
                     <div class="Cart__productGrid Cart__productQuantity">
-                        <button class="btn btn-sm btn-info btn-minus" data-itemid="{{$item->id}}">-</button>
                         <span class="qty" data-itemid="{{$item->id}}">{{$item->quantity}}</span>
-                        <button class="btn btn-sm btn-info btn-plus" data-itemid="{{$item->id}}">+</button>
                     </div>
                     <div class="Cart__productGrid Cart__productTotal">${{$item->price * $item->quantity}}</div>
-                    <div class="Cart__productGrid Cart__productDel">
-                        <button class="btn btn-sm btn-info btn-delete" data-itemid="{{$item->id}}">&times;</button>
-                    </div>
                 </div>
             @endforeach
+            總計:${{\Cart::getTotal()}}
+            運費:@if(\Cart::getTotal() > 1200) 免運費 @else $120 @endif
         </div>
+    </div>
+
+    <div class="container">
+        <form method="POST" action="/cart_checkout">
+            @csrf
+            <div class="form-group row">
+                <label for="recipient_name" class="col-sm-2 col-form-label">收件人名稱</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="recipient_name" name="recipient_name">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="recipient_phone" class="col-sm-2 col-form-label">收件人電話</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="recipient_phone" name="recipient_phone">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="recipient_address" class="col-sm-2 col-form-label">收件人地址</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="recipient_address" name="recipient_address">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="shipment_time" class="col-sm-2 col-form-label">送貨時間</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="shipment_time" name="shipment_time">
+                </div>
+            </div>
+
+            <button class="btn btn-sm btn-primary">成立訂單，並前往付款</button>
+        </form>
     </div>
 </section>
 
@@ -150,70 +178,6 @@
 
 @section('js')
 <script>
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
-
-    $('.btn-minus').click(function () {
-        var itemid = this.getAttribute('data-itemid');
-
-        $.ajax({
-            method: 'POST',
-            url: '/update_cart/'+itemid,
-            data: {
-                quantity:-1
-            },
-            success: function (res) {
-                var old_value = $(`.qty[data-itemid="${itemid}"]`).text();
-                var new_value = parseInt(old_value) + quantity;
-                $(`.qty[data-itemid="${itemid}"]`).text();
-
-            },
-            error: function (jqXHR, textStatus, errorThrown) {
-                console.error(textStatus + " " + errorThrown);
-            }
-        });
-
-    });
-
-    $('.btn-plus').click(function () {
-        var itemid = this.getAttribute('data-itemid');
-
-        $.ajax({
-            method: 'POST',
-            url: '/update_cart/'+itemid,
-            data: {
-                quantity:1
-            },
-            success: function (res) {
-                window.location.reload()
-            },
-            error: function (jqXHR, textStatus, errorThrown) {
-                console.error(textStatus + " " + errorThrown);
-            }
-        });
-    });
-
-    $('.btn-delete').click(function () {
-        var itemid = this.getAttribute('data-itemid');
-
-        var r=confirm("確定要將此商品從購物車移除嗎?")
-        if (r==true){
-            $.ajax({
-                method: 'POST',
-                url: '/delete_cart/'+itemid,
-                data: {},
-                success: function (res) {
-                    window.location.reload()
-                },
-                error: function (jqXHR, textStatus, errorThrown) {
-                    console.error(textStatus + " " + errorThrown);
-                }
-            });
-        }
-    });
 
 </script>
 

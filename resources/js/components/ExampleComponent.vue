@@ -16,6 +16,14 @@
 
 <script>
     export default {
+        props: [
+            'myProduct'
+        ],
+        data: function () {
+            return {
+                products: this.myProduct
+            }
+        },
         mounted() {
             console.log('Component mounted.')
         }
