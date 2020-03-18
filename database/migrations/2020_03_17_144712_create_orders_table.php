@@ -19,8 +19,9 @@ class CreateOrdersTable extends Migration {
 			$table->string('recipient_name')->default('0');
 			$table->string('recipient_phone')->default('0');
 			$table->string('recipient_address')->default('0');
-			$table->string('shipment_time')->default('0');
-			$table->integer('total_price')->unsigned()->default(0);
+            $table->string('shipment_time')->default('0');
+            $table->integer('shipment_price')->default(0);
+			$table->integer('total_price')->default(0);
 			$table->string('shipment_status', 50)->default('0');
 			$table->string('payment_status', 50)->default('0');
 			$table->timestamps();

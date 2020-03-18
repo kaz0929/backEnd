@@ -12,8 +12,7 @@
 */
 
 Route::get('/', 'FrontController@index');
-
-Route::get('/news', 'FrontController@news'); //List Page
+Route::get('/news', 'FrontController@news');//List Page
 Route::get('/news/{id}', 'FrontController@news_detail'); //Content Page
 
 Route::get('/products', 'FrontController@products'); //List Page
@@ -29,6 +28,18 @@ Route::get('/cart','FrontController@cart_total'); //cart 總覽
 
 Route::get('/cart_checkout','FrontController@cart_checkout'); //cart 結帳
 Route::post('/cart_checkout','FrontController@post_cart_checkout'); //cart 結帳
+
+
+Route::get('test_check_out','FrontController@test_check_out');
+
+Route::prefix('cart_ecpay')->group(function(){
+
+    //當消費者付款完成後，綠界會將付款結果參數以幕後(Server POST)回傳到該網址。
+    Route::post('notify', 'FrontController@notifyUrl')->name('notify');
+
+    //付款完成後，綠界會將付款結果參數以幕前(Client POST)回傳到該網址
+    Route::post('return', 'FrontController@returnUrl')->name('return');
+});
 
 Route::get('/test_py',function(){
     $jsondata= shell_exec("python test.py");

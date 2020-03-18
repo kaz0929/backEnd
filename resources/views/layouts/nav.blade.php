@@ -68,6 +68,15 @@
                         最新消息
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link link text-white display-4" href="/cart">
+                        <?php
+                            $cartCollection = Cart::getContent();
+                            $count = $cartCollection->count();
+                        ?>
+                        Cart({{$count}})
+                    </a>
+                </li>
             </ul>
             <div class="navbar-buttons mbr-section-btn">
                 <a class="btn btn-sm btn-primary display-4" href="/products">
@@ -75,6 +84,7 @@
                     Our Shop
                 </a>
             </div>
+
         </div>
     </nav>
 </section>

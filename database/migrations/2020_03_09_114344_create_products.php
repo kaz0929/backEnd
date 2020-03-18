@@ -18,6 +18,7 @@ class CreateProducts extends Migration
             $table->string('img');
             $table->integer('sort')->default(0);
             $table->string('title')->default("TEST TITLE");
+            $table->integer('price');
             $table->string('content')->nullable();
             $table->string('types_id');
             $table->timestamps();

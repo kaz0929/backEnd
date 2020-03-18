@@ -143,6 +143,8 @@
                 </div>
             @endforeach
         </div>
+
+        <a class="btn btn-info" href="/cart_checkout">前往結帳</a>
     </div>
 </section>
 
@@ -167,8 +169,8 @@
             },
             success: function (res) {
                 var old_value = $(`.qty[data-itemid="${itemid}"]`).text();
-                var new_value = parseInt(old_value) + quantity;
-                $(`.qty[data-itemid="${itemid}"]`).text();
+                var new_value = parseInt(old_value) -1;
+                $(`.qty[data-itemid="${itemid}"]`).text(new_value);
 
             },
             error: function (jqXHR, textStatus, errorThrown) {
@@ -188,7 +190,9 @@
                 quantity:1
             },
             success: function (res) {
-                window.location.reload()
+                var old_value = $(`.qty[data-itemid="${itemid}"]`).text();
+                var new_value = parseInt(old_value) + 1;
+                $(`.qty[data-itemid="${itemid}"]`).text(new_value);
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 console.error(textStatus + " " + errorThrown);

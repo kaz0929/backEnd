@@ -8,7 +8,7 @@
 
     .Cart__header {
         display: grid;
-        grid-template-columns: 3fr 1fr 1fr 1fr 1fr;
+        grid-template-columns: 3fr 1fr 1fr 1fr;
         grid-gap: 2px;
         margin-bottom: 2px;
     }
@@ -20,7 +20,7 @@
 
     .Cart__product {
         display: grid;
-        grid-template-columns: 2fr 7fr 3fr 3fr 3fr 3fr;
+        grid-template-columns: 2fr 7fr 3fr 3fr 3fr;
         grid-gap: 2px;
         margin-bottom: 2px;
         height: 90px;
@@ -136,8 +136,19 @@
                     <div class="Cart__productGrid Cart__productTotal">${{$item->price * $item->quantity}}</div>
                 </div>
             @endforeach
-            總計:${{\Cart::getTotal()}}
-            運費:@if(\Cart::getTotal() > 1200) 免運費 @else $120 @endif
+
+            <?php
+                if(\Cart::getTotal() > 1200){
+                    $shipment_price = 0;
+                }else{
+                    $shipment_price = 120;
+                }
+            ?>
+
+            <div class="text-right">
+                <p>運費:${{$shipment_price}}</p>
+                <p>總計:${{\Cart::getTotal() + $shipment_price}}</p>
+            </div>
         </div>
     </div>
 
@@ -169,7 +180,9 @@
                 </div>
             </div>
 
-            <button class="btn btn-sm btn-primary">成立訂單，並前往付款</button>
+            <div class="text-center">
+                <button class="btn btn-sm btn-primary">成立訂單，並前往付款</button>
+            </div>
         </form>
     </div>
 </section>
