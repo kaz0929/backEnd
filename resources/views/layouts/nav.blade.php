@@ -200,6 +200,9 @@
   <script src="/assets/gallery/player.min.js"></script>
   <script src="/assets/gallery/script.js"></script>
   <script src="/assets/slidervideo/script.js"></script>
+    @if(config('app.env') == 'local')
+    <script src="http://localhost:35729/livereload.js"></script>
+    @endif
 
   @yield('js')
 

@@ -1,58 +1,7 @@
 @extends('layouts/nav')
 
 @section('css')
-<style>
-    .product-card {
-        min-height: 500px;
-        box-sizing: border-box;
-        padding: 48px 48px 40px;
-        margin-bottom: 60px;
-        background: #fafafa;
-    }
-
-    .product-card .product-info .title {
-        width: 100%;
-        font-size: 40px;
-        font-weight: 400;
-        line-height: 48px;
-        color: #000;
-        margin: 0;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    .product-card .product-info .sub-title {
-        font-size: 20px;
-        line-height: 24px;
-        color: #757575;
-        margin-top: 8px;
-    }
-
-    .product-card .color {
-        padding: 10px 20px;
-        width: 160px;
-        min-height: 58px;
-        height: 100%;
-        font-size: 16px;
-        line-height: 20px;
-        color: #757575;
-        text-align: center;
-        border: 1px solid #eee;
-        background-color: #fff;
-        -webkit-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-        transition: opacity, border .2s linear;
-        cursor: pointer;
-    }
-
-    .product-card .color.active {
-        color: #424242;
-        border-color: #ff6700;
-        transition: opacity, border .2s linear;
-    }
-</style>
+<link rel="stylesheet" href="{{asset('css/product_detail.css')}}">
 @endsection
 
 @section('content')
