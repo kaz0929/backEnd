@@ -44,7 +44,7 @@ Route::prefix('cart_ecpay')->group(function(){
 Route::get('/test_py',function(){
     $jsondata= shell_exec("python test.py");
     $data =  json_decode ($jsondata);
-    dd($data->price);
+    dd($data);
 });
 
 Auth::routes();
